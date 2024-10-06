@@ -22,7 +22,7 @@ composer install
 ```
 
 ### Collegare il database:
-Ho mandato un backup del database che ho creato, bisogna solo modificare le credenziali di accesso al MySQL nel file `.env`. Ho lasciato `root` come username, la password l’ho rimossa. Una volta installato il database (MySQL), bisogna inizializzarlo con i seguenti comandi:
+Bisogna inizializzarlo con i seguenti comandi:
 
 ```bash
 php bin/console make:migration
