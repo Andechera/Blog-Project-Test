@@ -1,0 +1,11 @@
+{# Template per accogliere gli utenti al blog, una semplice landing page che reindirizza alla lista dei post. #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center display-1">il nostro Blog</h1>
+
+    <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column">
+        <h3>Magnifico Blog pieno di Super Post!</h3>
+        <a href="{{ path('app_blog_post')}}" class="btn btn-dark text-center mt-5">Clicka qui e valli a vedere!</a>
+    </div>
+{% endblock %}

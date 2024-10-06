@@ -1,0 +1,29 @@
+{# Template per il Form. Permette di creare o modificare un post. #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="mt-4">
+    {{ form_start(form) }}
+
+    <h3>{{ form.vars.data.id is null ? 'Crea un Post' : 'Modifica il post' }}</h3>
+
+    <!-- Input Titolo -->
+    <div class="mb-3">
+      {{ form_label(form.titolo) }}
+      {{ form_widget(form.titolo) }}
+      {% if form.titolo.vars.errors is not empty %}
+        <div class="invalid-feedback">{{ form_errors(form.titolo) }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Input Contenuto -->
+    <div class="mb-3">{{ form_label(form.contenuto) }}
+      {{ form_widget(form.contenuto) }}</div>
+
+    <!-- Input Data Creazione Disabilitata -->
+    <div class="mb-3">{{ form_widget(form.createdAt) }}</div>
+    <button class="btn btn-primary">{{ form.vars.data.id is null ? 'Crea' : 'Modifica' }}</button>
+
+    {{ form_end(form) }}
+  </div>
+{% endblock %}

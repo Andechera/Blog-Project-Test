@@ -1,0 +1,54 @@
+{# Template per la visualizzazione di una lista di post del blog. Usa il ciclo for con Twig per ciclare sui post forniti dal controller. #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  <Blog/>: I Nostri Post
+{% endblock %}
+
+{% block body %}
+  {% for message in app.flashes('message') %}
+    <div class="alert alert-success position-absolute top-0 start-50 translate-middle-x" role="alert">{{ message }}</div>
+  {% endfor %}
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{ path('app_main') }}">Home Page</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Post</li>
+    </ol>
+  </nav>
+
+  <div class="row mt-5">
+    <div class="col-12 mt-2">
+      <h1 class="display-3 text-center">I nostri Post</h1>
+    </div>
+    <div class="col-12 mt-2">
+      <a href="{{ path('create-post') }}" class="btn btn-success w-100">Crea un Post +</a>
+    </div>
+    <div class="col-12 mt-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Creato il</th>
+            <th scope="col">Titolo</th>
+            <th scope="col">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+            <tr>
+              <th scope="row">{{ post.createdAt|date('d-m-y') }}</th>
+              <td>{{ post.titolo }}</td>
+              <td>
+                <a href="{{ path('edit-post', { id: post.id }) }}" class="btn btn-warning">Modifica</a>
+                <a href="{{ path('delete-post', { id: post.id }) }}" class="btn btn-danger">Elimina</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="pagination">{{ knp_pagination_render(posts) }}</div>
+    </div>
+  </div>
+{% endblock %}
